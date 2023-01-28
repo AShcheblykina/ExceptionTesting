@@ -1,5 +1,6 @@
 public class Repository {
     private Product[] products = new Product[0];
+    private boolean findById;
 
     public void add(Product product) {
         Product[] tmp = new Product[products.length + 1];
@@ -16,6 +17,11 @@ public class Repository {
     }
 
     public Product[] deletyById(int deleteId) {
+        Product foundProduct = findById(deleteId);
+        if (foundProduct == null) {
+            throw new NotFoundException(deleteId);
+
+        }
         Product[] tmp = new Product[products.length - 1];
         int index = 0;
         for (Product product : products) {
@@ -27,4 +33,14 @@ public class Repository {
         products = tmp;
         return tmp;
     }
+
+    public Product findById(int id) {
+        for (Product product : products) {
+            if (product.getId() == id) {
+                return product;
+            }
+        }
+        return null;
+    }
+
 }

@@ -59,6 +59,8 @@ public class ManagerTest {
         Product[] expected = {book2, book3};
         Product[] actual = repo.deletyById(1);
 
+        Assertions.assertArrayEquals(expected, actual);
+
     }
 
     @Test

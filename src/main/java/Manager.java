@@ -1,11 +1,11 @@
 public class Manager {
-    private static Repository repository;
+    private Repository repository;
 
     public Manager(Repository repository) {
         this.repository = repository;
     }
 
-    public static void add(Product product) {
+    public void add(Product product) {
         repository.add(product);
     }
 
@@ -32,5 +32,16 @@ public class Manager {
             return false;
         }
     }
+
+    public Product findById(int Id) {
+        for (Product product : repository.findAll()) {
+            if (product.getId() != Id) {
+                return product;
+            }
+        }
+        return null;
+    }
+
 }
+
 
